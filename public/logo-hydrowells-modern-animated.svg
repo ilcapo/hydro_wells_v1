@@ -1,0 +1,52 @@
+<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Degradado de la gota -->
+    <linearGradient id="dropGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#0288D1"/>
+    </linearGradient>
+
+    <!-- Glow exterior -->
+    <radialGradient id="outerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(79,195,247,0.6)" />
+      <stop offset="100%" stop-color="rgba(79,195,247,0)" />
+    </radialGradient>
+  </defs>
+
+  <!-- Glow animado -->
+  <circle cx="70" cy="70" r="60" fill="url(#outerGlow)" opacity="0.25">
+    <animate attributeName="opacity" values="0.15;0.35;0.15" dur="4s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Gota exterior -->
+  <path
+    id="drop"
+    d="M70 15C70 15 35 55 35 85C35 110 52 125 70 125C88 125 105 110 105 85C105 55 70 15 70 15Z"
+    fill="url(#dropGradient)"
+  >
+    <!-- Animación ondulante -->
+    <animate attributeName="d"
+      dur="4s"
+      repeatCount="indefinite"
+      values="
+        M70 15C70 15 35 55 35 85C35 110 52 125 70 125C88 125 105 110 105 85C105 55 70 15 70 15Z;
+        M70 13C70 13 37 57 37 85C37 112 52 127 70 127C88 127 103 112 103 85C103 57 70 13 70 13Z;
+        M70 15C70 15 35 55 35 85C35 110 52 125 70 125C88 125 105 110 105 85C105 55 70 15 70 15Z
+      "
+    />
+  </path>
+
+  <!-- Pozo moderno -->
+  <rect x="55" y="70" width="30" height="25" rx="4" fill="white" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite" />
+  </rect>
+
+  <rect x="60" y="75" width="20" height="15" rx="3" fill="#0288D1" opacity="0.9">
+    <animate attributeName="opacity" values="0.9;1;0.9" dur="3s" repeatCount="indefinite" />
+  </rect>
+
+  <!-- Gota interna -->
+  <circle cx="70" cy="60" r="6" fill="white">
+    <animate attributeName="cy" values="58;62;58" dur="2.5s" repeatCount="indefinite" />
+  </circle>
+</svg>

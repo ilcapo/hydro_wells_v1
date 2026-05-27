@@ -1,0 +1,34 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.9)" />
+      <stop offset="100%" stop-color="rgba(255,255,255,0)" />
+    </radialGradient>
+
+    <linearGradient id="water" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#0EA5E9" />
+    </linearGradient>
+  </defs>
+
+  <!-- Glow exterior -->
+  <circle cx="60" cy="60" r="55" fill="url(#glow)" opacity="0.25">
+    <animate attributeName="opacity" values="0.15;0.35;0.15" dur="4s" repeatCount="indefinite" />
+  </circle>
+
+  <!-- Círculo principal -->
+  <circle cx="60" cy="60" r="50" fill="url(#water)" />
+
+  <!-- Gota animada -->
+  <path d="M60 28C60 28 40 48 40 65C40 78.8071 50.1929 89 64 89C77.8071 89 88 78.8071 88 65C88 48 60 28 60 28Z"
+        fill="white">
+    <animate attributeName="d"
+      dur="3.5s"
+      repeatCount="indefinite"
+      values="
+        M60 28C60 28 40 48 40 65C40 78.8071 50.1929 89 64 89C77.8071 89 88 78.8071 88 65C88 48 60 28 60 28Z;
+        M60 26C60 26 42 50 42 65C42 80 52 90 64 90C76 90 86 80 86 65C86 50 60 26 60 26Z;
+        M60 28C60 28 40 48 40 65C40 78.8071 50.1929 89 64 89C77.8071 89 88 78.8071 88 65C88 48 60 28 60 28Z
+      " />
+  </path>
+</svg>

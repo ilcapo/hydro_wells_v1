@@ -1,0 +1,22 @@
+<svg width="140" height="140" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="dropGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#0288D1"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Gota exterior -->
+  <path
+    d="M70 15C70 15 35 55 35 85C35 110 52 125 70 125C88 125 105 110 105 85C105 55 70 15 70 15Z"
+    fill="url(#dropGradient)"
+  />
+
+  <!-- Pozo moderno -->
+  <rect x="55" y="70" width="30" height="25" rx="4" fill="white" opacity="0.9"/>
+  <rect x="60" y="75" width="20" height="15" rx="3" fill="#0288D1" opacity="0.9"/>
+
+  <!-- Gota interna -->
+  <circle cx="70" cy="60" r="6" fill="white"/>
+
+</svg>
