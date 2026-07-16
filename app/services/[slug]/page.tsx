@@ -79,8 +79,15 @@ export default async function ServicePage({ params }: ServicePageProps) {
     .eq('status', 'approved')
     .order('created_at', { ascending: false });
 
+  // Calculate average rating and review count if reviews exist
+  const hasReviews = reviews && reviews.length > 0;
+  const reviewCount = hasReviews ? reviews.length : 0;
+  const avgRating = hasReviews
+    ? Number((reviews.reduce((acc: number, curr: any) => acc + curr.rating, 0) / reviewCount).toFixed(1))
+    : 5; // default fallback rating
+
   // Schema.org Structured Data
-  const jsonLd = {
+  const jsonLd: any = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     'name': service.name,
@@ -102,6 +109,32 @@ export default async function ServicePage({ params }: ServicePageProps) {
     },
     'areaServed': ['Maryland', 'Washington DC'],
   };
+
+  // Add AggregateRating and individual reviews if reviews exist
+  if (hasReviews) {
+    jsonLd.aggregateRating = {
+      '@type': 'AggregateRating',
+      'ratingValue': avgRating,
+      'reviewCount': reviewCount,
+      'bestRating': 5,
+      'worstRating': 1,
+    };
+    jsonLd.review = reviews.map((rev: any) => ({
+      '@type': 'Review',
+      'author': {
+        '@type': 'Person',
+        'name': rev.name,
+      },
+      'datePublished': rev.created_at,
+      'reviewBody': rev.comment,
+      'reviewRating': {
+        '@type': 'Rating',
+        'ratingValue': rev.rating,
+        'bestRating': 5,
+        'worstRating': 1,
+      },
+    }));
+  }
 
   return (
     <main className="min-h-screen pb-24 pt-10 px-6 sm:px-8 lg:px-10">

@@ -50,15 +50,15 @@ const steps = [
 const faqs = [
   {
     question: 'When should I call a professional to inspect my well?',
-    answer: 'Have your system checked at least once a year or when you notice low pressure, strange noises, changes in water quality, or higher bills.',
+    answer: 'Have your system checked at least once a year. Regular inspections are critical in Maryland and DC to prevent contamination from groundwater runoff and ensure the submersible pump operates within its electrical parameters. Inspect immediately if you notice low pressure, sputtering taps, or changes in water turbidity.',
   },
   {
     question: 'Can I improve the water pressure in my home?',
-    answer: 'Yes. A constant pressure system plus proper maintenance can restore stable flow and reduce equipment wear.',
+    answer: 'Yes. By installing a constant pressure controller (VFD like Franklin Electric MonoDrive) alongside a properly sized pressure tank, we can maintain constant, city-like pressure even during simultaneous use, reducing wear on the pump motor.',
   },
   {
-    question: 'What factors affect the cost of a new well?',
-    answer: 'It depends on soil type, depth, site access, and pump selection. We provide a fair, transparent estimate.',
+    question: 'What factors affect the cost and depth of a new well in MD & DC?',
+    answer: 'Cost depends on the geological formation of your site. In the Piedmont region (e.g. Montgomery County), wells are typically drilled into fractured rock aquifers and require less casing but greater depth (200-600 ft). In the Coastal Plain (e.g. Prince George\'s County), wells target sand aquifers, requiring extensive screen casing to filter sediment but at shallower depths. Casing materials, pump horsepower, and site access also influence the total cost.',
   },
 ];
 
@@ -163,8 +163,8 @@ export default function HomeClient({ initialServices, initialProjects, initialRe
             />
 
             <div className="leading-tight">
-              <p className="text-sm uppercase tracking-[0.24em] text-sky-200/90">HYDROWELLS</p>
-              <p className="text-sm text-slate-300">Water solutions for Maryland & DC</p>
+              <p className="text-sm uppercase tracking-[0.24em] text-sky-200/90 font-semibold font-mono">HYDROWELLS</p>
+              <p className="text-xs text-slate-300">MDE Certified Well Drillers & MHIC Licensed</p>
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300">
@@ -561,6 +561,11 @@ export default function HomeClient({ initialServices, initialProjects, initialRe
               <p className="mt-4 max-w-xl text-sm leading-7 text-slate-400">
                 Serving Maryland and Washington DC with premium well drilling, pump service, and constant pressure systems. Always available for emergencies.
               </p>
+              <div className="mt-4 text-[11px] text-slate-500 space-y-1 font-mono">
+                <p>• MDE Master Well Driller License #WD-954-78</p>
+                <p>• Maryland Home Improvement Commission (MHIC) License #164823</p>
+                <p>• Compliant with COMAR 26.04.04 standards</p>
+              </div>
             </div>
             <div>
               <p className="text-sm uppercase tracking-[0.3em] text-sky-200/80">Quick links</p>

@@ -118,5 +118,27 @@ export default async function GalleryPage() {
   // Combine fetched images and fallbacks if database returns empty
   const images = dbImages.length > 0 ? dbImages : fallbackImages;
 
-  return <GalleryClient initialImages={images} />;
+  // Schema.org ImageGallery Structured Data
+  const galleryJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ImageGallery',
+    'name': 'HydroWells Water Solutions Portfolio',
+    'description': 'Browse photographs of water well drilling, pump installation, and constant pressure system setups across Maryland and Washington DC.',
+    'associatedMedia': images.map((img) => ({
+      '@type': 'ImageObject',
+      'contentUrl': img.url,
+      'caption': img.caption,
+      'name': img.originName,
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(galleryJsonLd) }}
+      />
+      <GalleryClient initialImages={images} />
+    </>
+  );
 }
