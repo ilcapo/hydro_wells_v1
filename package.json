@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.12.0",
+    "@supabase/supabase-js": "^2.108.2",
     "framer-motion": "^11.0.0",
     "lucide-react": "^0.535.0",
     "next": "^16.2.6",
@@ -22,6 +24,7 @@
     "autoprefixer": "^10.4.19",
     "eslint": "^9.39.4",
     "eslint-config-next": "^16.2.6",
+    "pg": "^8.22.0",
     "postcss": "^8.4.57",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.6.2"
