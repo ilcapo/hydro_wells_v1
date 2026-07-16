@@ -1,0 +1,73 @@
+# HydroWells V2 - Developer & AI Assistant Guide
+
+Welcome! This document provides a high-level overview of the HydroWells V2 codebase, database schema, routing, and developer workflows. It is optimized for LLMs and AI coding assistants to quickly understand the project context.
+
+## 1. Project Overview & Tech Stack
+HydroWells V2 is a modern corporate site and Content Management System (CMS) built to serve residential and commercial water well and pump system clients in Maryland and Washington DC.
+
+- **Frontend Framework**: Next.js 14+ (App Router)
+- **Styling**: Tailwind CSS, Framer Motion (for premium dark-themed micro-animations and glassmorphism)
+- **Database & Backend**: Supabase (PostgreSQL, Supabase Auth, Row-Level Security, Supabase Storage)
+- **Icons**: Lucide React
+- **Hosting / Deployments**: Vercel
+
+---
+
+## 2. Key Directories and Files
+- `app/` - Next.js App Router folders and page components.
+  - `app/page.tsx` & `app/HomeClient.tsx` - Main landing page (Server-Side rendering wrapper and interactive client-side layout).
+  - `app/services/[slug]/` - Dynamic page for individual services (e.g. drilling, pump services). Includes dynamic metadata and JSON-LD schema markup.
+  - `app/projects/[slug]/` - Dynamic page for success cases / project details.
+  - `app/gallery/` - Dynamic public gallery route showing photos of services, projects, and approved customer review evidence.
+  - `app/admin/` - Secure Content Management System (CMS) panel:
+    - `/admin/login` - Login and Signup screen.
+    - `/admin/page.tsx` - Admin KPI Dashboard and review moderation queue.
+    - `/admin/categories` - Service category management.
+    - `/admin/services` - Create/edit services and upload gallery images.
+    - `/admin/projects` - Create/edit success stories and upload project photos.
+    - `/admin/reviews` - Approve/reject customer comments and preview submitted files.
+  - `app/api/` - Backend API endpoints (e.g. contact forms, email notifications).
+- `components/` - Shared UI elements (buttons, inputs, cards, accordion, custom review forms).
+- `lib/` - Shared helper modules (Supabase client/server connection configurations).
+- `middleware.ts` - Intercepts requests to `/admin`, validating the session and roles before rendering.
+- `supabase_schema.sql` - Full PostgreSQL schema, constraints, triggers, and Row-Level Security (RLS) policies.
+
+---
+
+## 3. Database Schema Overview (Supabase PostgreSQL)
+All database interactions occur via Supabase client libraries connecting to the following main tables:
+
+- **`profiles`**
+  - Columns: `id` (uuid, auth.users), `email` (text), `role` ('admin' or 'editor'), `created_at`
+  - Notes: First user registering bootstraps as `admin`, others default to `editor`.
+- **`service_categories`**
+  - Columns: `id` (uuid), `name` (text), `slug` (text, unique), `description` (text)
+- **`services`**
+  - Columns: `id` (uuid), `name` (text), `slug` (text, unique), `short_description` (text), `full_description` (text), `featured_image` (text), `category_id` (uuid), `active` (boolean), `featured` (boolean), `meta_title` (text), `meta_description` (text)
+- **`service_images`**
+  - Columns: `id` (uuid), `service_id` (uuid, FK), `image_url` (text), `caption` (text), `sort_order` (integer)
+- **`projects`**
+  - Columns: `id` (uuid), `title` (text), `slug` (text, unique), `description` (text), `location` (text), `featured_image` (text), `completion_date` (date), `active` (boolean)
+- **`project_images`**
+  - Columns: `id` (uuid), `project_id` (uuid, FK), `image_url` (text), `caption` (text)
+- **`reviews`**
+  - Columns: `id` (uuid), `service_id` (uuid, FK), `name` (text), `email` (text), `rating` (integer, 1-5), `comment` (text), `status` ('pending', 'approved', 'rejected')
+- **`review_media`**
+  - Columns: `id` (uuid), `review_id` (uuid, FK), `file_url` (text), `file_type` ('image' or 'video')
+
+---
+
+## 4. Security & Role Permissions
+- **Route Protection**: The middleware verifies active sessions for any route under `/admin`.
+- **Editor role**: Can view, add, or edit services, projects, and categories.
+- **Admin role**: Inherits Editor permissions, and has exclusive delete rights on categories, services, projects, reviews, and images.
+
+---
+
+## 5. Development Workflows
+- **Running locally**: `npm run dev` (runs Next.js dev server on port 3000).
+- **Compiling**: `npm run build` (checks TypeScript types and builds static/dynamic production bundle).
+- **Environment configuration**: Local keys must reside in `.env.local` containing:
+  - `NEXT_PUBLIC_SUPABASE_URL`
+  - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+  - `NEXT_PUBLIC_SITE_URL`
