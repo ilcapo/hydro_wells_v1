@@ -168,6 +168,9 @@ export default function HomeClient({ initialServices, initialProjects, initialRe
             </div>
           </div>
           <div className="flex flex-wrap items-center gap-4 text-sm text-slate-300">
+            <Link href="/gallery" className="transition hover:text-primary font-medium px-2">
+              Gallery
+            </Link>
             <span className="rounded-full border border-slate-500/30 bg-slate-950/40 px-4 py-2">24/7 Service</span>
             <a href="tel:3013937090" className="inline-flex items-center gap-2 rounded-full bg-slate-900/80 px-4 py-2 text-primary transition hover:bg-slate-800/90">
               <Phone className="h-4 w-4" />
@@ -563,6 +566,7 @@ export default function HomeClient({ initialServices, initialProjects, initialRe
               <p className="text-sm uppercase tracking-[0.3em] text-sky-200/80">Quick links</p>
               <ul className="mt-6 space-y-3 text-sm text-slate-300">
                 <li><a href="#services" className="transition hover:text-primary">Services</a></li>
+                <li><Link href="/gallery" className="transition hover:text-primary">Gallery</Link></li>
                 <li><a href="#faq" className="transition hover:text-primary">FAQ</a></li>
                 <li><a href="#testimonials" className="transition hover:text-primary">Testimonials</a></li>
                 <li><a href="#contact" className="transition hover:text-primary">Contact</a></li>

@@ -176,3 +176,6 @@ Al auditar a fondo el código y la base de datos, se identificaron los siguiente
 ### 🔍 Auditoría de Imágenes Subidas por CMS
 * **Situación actual**: El CMS permite subir cualquier imagen como banner de servicio o proyecto. Si los usuarios suben imágenes directamente tomadas con teléfonos móviles (que suelen pesar entre 5MB y 12MB en formatos sin comprimir), el rendimiento del sitio se degradará drásticamente.
 * **Solución**: Implementar una librería de compresión en el cliente (como `browser-image-compression`) o un procesamiento en el servidor antes de subir la imagen a Supabase, forzando la conversión a formatos modernos de alto rendimiento como **WebP** y limitando la resolución máxima a 1920px de ancho.
+
+
+enlace para probar el sistema admin https://hydro-wells-v1.vercel.app/admin/login 1234567890
